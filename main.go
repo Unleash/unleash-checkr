@@ -1,9 +1,11 @@
 package main
 
 import (
-	"log"
+	"fmt"
 	"os"
 
+	"github.com/apex/log"
+	clih "github.com/apex/log/handlers/cli"
 	"github.com/wesleimp/unleash-checkr/cmd/cli"
 )
 
@@ -12,8 +14,13 @@ var (
 )
 
 func main() {
+	log.SetHandler(clih.Default)
+
+	fmt.Println()
+	defer fmt.Println()
+
 	err := cli.Run(version, os.Args)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal(err.Error())
 	}
 }

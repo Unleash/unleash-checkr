@@ -27,13 +27,12 @@ func Start(ctx *context.Context) error {
 	fmt.Println()
 
 	for _, f := range ff {
-		name := color.New(color.Bold).Sprintf("Name:")
-		descripion := color.New(color.Bold).Sprint("Description:")
 		createdAt := color.New(color.Bold).Sprint("Created at:")
 
-		log.Info(fmt.Sprintf("%s %s", name, f.Name))
-		log.Info(fmt.Sprintf("%s %s", descripion, f.Description))
+		log.Info(color.New(color.Bold, color.Green).Sprintf(f.Name))
+		log.Info(f.Description)
 		log.Info(fmt.Sprintf("%s %v", createdAt, f.CreatedAt))
+		log.Info(fmt.Sprintf("%s/#/features/strategies/%s", ctx.Config.URL, f.Name))
 		fmt.Println()
 	}
 
