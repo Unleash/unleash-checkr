@@ -26,6 +26,25 @@ func Run(version string, args []string) error {
 				},
 				Action: runCheck,
 			},
+			{
+				Name:    "notify",
+				Aliases: []string{"n"},
+				Usage:   "checks the flags and notify",
+				Flags: []cli.Flag{
+					&cli.StringFlag{
+						Name:     "slack-channel",
+						Usage:    "slack notification channel",
+						Required: true,
+					},
+					&cli.StringFlag{
+						Name:     "silent",
+						Aliases:  []string{"s"},
+						Usage:    "silent mode doesn't print the flags on the console",
+						Required: true,
+					},
+				},
+				Action: runNotify,
+			},
 		},
 	}
 

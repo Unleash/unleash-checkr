@@ -23,7 +23,7 @@ func runCheck(c *cli.Context) error {
 		Expires: expires,
 	})
 
-	err = check.Start(ctx)
+	_, err = check.Start(ctx)
 	if err != nil {
 		log.WithError(err).Error("Error checking flags")
 		return err

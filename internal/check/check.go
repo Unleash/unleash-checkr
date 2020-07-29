@@ -10,7 +10,7 @@ import (
 )
 
 // Start check
-func Start(ctx *context.Context) error {
+func Start(ctx *context.Context) ([]flag.Flag, error) {
 	log.WithFields(log.Fields{
 		"url":     ctx.Config.URL,
 		"expires": ctx.Config.Expires,
@@ -18,7 +18,7 @@ func Start(ctx *context.Context) error {
 
 	ff, err := flag.Get(ctx)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
 	log.Info("Flags list")
@@ -38,5 +38,5 @@ func Start(ctx *context.Context) error {
 	log.Info(fmt.Sprintf("%s %v", bold.Sprintf("Count:"), len(ff)))
 	fmt.Println()
 
-	return nil
+	return ff, nil
 }
