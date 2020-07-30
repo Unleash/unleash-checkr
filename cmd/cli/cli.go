@@ -21,7 +21,7 @@ func Run(version string, args []string) error {
 						Name:    "expires",
 						Aliases: []string{"e"},
 						Usage:   "expires after days",
-						Value:   7,
+						Value:   40,
 					},
 				},
 				Action: runCheck,

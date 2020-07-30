@@ -29,8 +29,10 @@ func Start(ctx *context.Context) ([]flag.Flag, error) {
 		createdAt := bold.Sprint("Created at:")
 
 		log.Info(color.New(color.Bold, color.FgGreen).Sprintf(f.Name))
-		log.Info(f.Description)
-		log.Info(fmt.Sprintf("%s %v", createdAt, f.CreatedAt))
+		if f.Description != "" {
+			log.Info(f.Description)
+		}
+		log.Info(fmt.Sprintf("%s %v", createdAt, f.CreatedAt.Format("01/02/2006 3:04 PM")))
 		log.Info(fmt.Sprintf("%s/#/features/strategies/%s", ctx.Config.URL, f.Name))
 		fmt.Println()
 	}
