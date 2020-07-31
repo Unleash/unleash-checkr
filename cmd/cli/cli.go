@@ -32,15 +32,30 @@ func Run(version string, args []string) error {
 				Usage:   "checks the flags and notify",
 				Flags: []cli.Flag{
 					&cli.StringFlag{
-						Name:     "slack-channel",
+						Name:     "channel",
 						Usage:    "slack notification channel",
 						Required: true,
 					},
 					&cli.StringFlag{
-						Name:     "silent",
-						Aliases:  []string{"s"},
-						Usage:    "silent mode doesn't print the flags on the console",
+						Name:    "slack-token",
+						Usage:   "slack token",
+						EnvVars: []string{"SLACK_TOKEN"},
+					},
+					&cli.StringFlag{
+						Name:     "url",
+						Usage:    "unleash api url",
 						Required: true,
+					},
+					&cli.IntFlag{
+						Name:    "expires",
+						Aliases: []string{"e"},
+						Usage:   "expires after days",
+						Value:   40,
+					},
+					&cli.StringFlag{
+						Name:    "silent",
+						Aliases: []string{"s"},
+						Usage:   "silent mode doesn't print the flags on the console",
 					},
 				},
 				Action: runNotify,
