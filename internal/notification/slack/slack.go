@@ -3,6 +3,7 @@ package slack
 import (
 	"fmt"
 
+	"github.com/apex/log"
 	slackAPI "github.com/slack-go/slack"
 	"github.com/wesleimp/unleash-checkr/internal/flag"
 	"github.com/wesleimp/unleash-checkr/pkg/context"
@@ -18,11 +19,8 @@ func Notify(ctx *context.Context, flags []flag.Flag) error {
 	api := slackAPI.New(ctx.Config.SlackToken)
 
 	att := createAttachments(ctx, flags)
-
-	var iconURL = "https://raw.githubusercontent.com/Unleash/unleash-frontend/master/public/logo.png"
 	_, _, _, err := api.SendMessage(ctx.Config.SlackChannel,
 		slackAPI.MsgOptionText(message, true),
-		slackAPI.MsgOptionIconURL(iconURL),
 		slackAPI.MsgOptionUsername("unleash-checkr"),
 		slackAPI.MsgOptionAttachments(att...),
 	)
@@ -31,8 +29,9 @@ func Notify(ctx *context.Context, flags []flag.Flag) error {
 }
 
 func createAttachments(ctx *context.Context, flags []flag.Flag) []slackAPI.Attachment {
-	var aa []slackAPI.Attachment
+	log.Infof("Creating %v attachments.", len(flags))
 
+	var aa []slackAPI.Attachment
 	for _, f := range flags {
 		aa = append(aa, slackAPI.Attachment{
 			Color:     color,
@@ -45,6 +44,8 @@ func createAttachments(ctx *context.Context, flags []flag.Flag) []slackAPI.Attac
 					Value: f.CreatedAt.Format("01/02/2006 3:04 PM"),
 				},
 			},
+			Footer:     "unleash",
+			FooterIcon: "https://emoji.slack-edge.com/TGN5JSCV7/unleash/e4e224dacc909a28.png",
 		})
 	}
 

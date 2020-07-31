@@ -1,6 +1,7 @@
 package cli
 
 import (
+	"github.com/apex/log"
 	"github.com/urfave/cli/v2"
 	"github.com/wesleimp/unleash-checkr/internal/flag"
 	"github.com/wesleimp/unleash-checkr/internal/notification/slack"
@@ -30,6 +31,8 @@ func runNotify(c *cli.Context) error {
 	if err != nil {
 		return err
 	}
+
+	log.Info("Flags sent to slack")
 
 	return nil
 }

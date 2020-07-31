@@ -56,7 +56,7 @@ func Run(version string, args []string) error {
 						Usage:   "expires after days",
 						Value:   40,
 					},
-					&cli.StringFlag{
+					&cli.BoolFlag{
 						Name:    "silent",
 						Aliases: []string{"s"},
 						Usage:   "silent mode doesn't print the flags on the console",
