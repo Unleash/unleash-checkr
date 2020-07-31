@@ -12,11 +12,15 @@ func Run(version string, args []string) error {
 		Version: version,
 		Commands: []*cli.Command{
 			{
-				Name:      "check",
-				Aliases:   []string{"c"},
-				Usage:     "checks the flags and print on the console",
-				ArgsUsage: "URL",
+				Name:    "check",
+				Aliases: []string{"c"},
+				Usage:   "checks the flags and print on the console",
 				Flags: []cli.Flag{
+					&cli.StringFlag{
+						Name:     "url",
+						Usage:    "unleash api url",
+						Required: true,
+					},
 					&cli.IntFlag{
 						Name:    "expires",
 						Aliases: []string{"e"},
