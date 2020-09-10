@@ -1,16 +1,11 @@
 FROM golang:1.14-alpine AS base
-RUN apk add --no-cache git
-WORKDIR /app
 
+RUN apk add --no-cache bash curl docker-cli git mercurial make
 
-FROM base as builder
-COPY go.mod go.sum ./
-RUN go mod download
-COPY . .
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -v -o unleash-checkr main.go
+ENTRYPOINT ["/entrypoint.sh"]
+CMD [ "-h" ]
 
+COPY scripts/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
-FROM scratch as final
-WORKDIR /app
-COPY --from=builder /app/unleash-checkr /app
-ENTRYPOINT ["./unleash-checkr"]
+COPY unleash-checkr /bin/unleash-checkr
