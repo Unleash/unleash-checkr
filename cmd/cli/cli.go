@@ -18,6 +18,7 @@ func Run(version string, args []string) error {
 				Flags: []cli.Flag{
 					&cli.StringFlag{
 						Name:     "url",
+						Aliases:  []string{"u"},
 						Usage:    "unleash api url",
 						Required: true,
 					},
@@ -47,6 +48,7 @@ func Run(version string, args []string) error {
 					},
 					&cli.StringFlag{
 						Name:     "url",
+						Aliases:  []string{"u"},
 						Usage:    "unleash api url",
 						Required: true,
 					},
@@ -55,11 +57,6 @@ func Run(version string, args []string) error {
 						Aliases: []string{"e"},
 						Usage:   "expires after days",
 						Value:   40,
-					},
-					&cli.BoolFlag{
-						Name:    "silent",
-						Aliases: []string{"s"},
-						Usage:   "silent mode doesn't print the flags on the console",
 					},
 				},
 				Action: runNotify,

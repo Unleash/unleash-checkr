@@ -14,14 +14,14 @@ func Start(ctx *context.Context) ([]flag.Flag, error) {
 	log.WithFields(log.Fields{
 		"url":     ctx.Config.URL,
 		"expires": ctx.Config.Expires,
-	}).Info("Start check")
+	}).Debug("Start check")
 
 	ff, err := flag.Get(ctx)
 	if err != nil {
 		return nil, err
 	}
 
-	log.Info("Flags list")
+	log.Debug("Flags list")
 	fmt.Println()
 
 	var bold = color.New(color.Bold)

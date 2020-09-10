@@ -10,7 +10,6 @@ require (
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/slack-go/slack v0.6.5
 	github.com/stretchr/testify v1.6.1
-	github.com/tj/assert v0.0.3
 	github.com/urfave/cli/v2 v2.2.0
 	golang.org/x/sys v0.0.0-20200728102440-3e129f6d46b1 // indirect
 )
