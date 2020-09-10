@@ -18,6 +18,12 @@ curl -sf https://gobinaries.com/unleash/unleash-checkr | sh
 
 Download the pre-compiled binaries from the [releases page](https://github.com/unleash/unleash-checkr/releases) and copy to the desired location
 
+### Docker
+
+```sh
+$ docker run -it --rm unleashorg/unleash-checkr --help
+```
+
 ### Compiling from source
 
 Clone the repository
